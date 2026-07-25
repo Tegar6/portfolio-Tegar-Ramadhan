@@ -102,7 +102,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     role: "Frontend Developer & UI Poster",
     company: "Tech Studio Labs",
     period: "2024 - Present",
-    location: "Jakarta (Remote)",
+    location: "Jakarta",
     type: "Full-time",
     description:
       "Memimpin pengembangan antarmuka web modern dengan arsitektur scalable, optimasi animasi GSAP/Framer Motion, serta pengujian responsif lintas perangkat.",
@@ -124,9 +124,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     id: "exp-2",
     role: "Junior Web Developer",
     company: "Digital Solutions ID",
-    period: "2023 - 2024",
-    location: "Bandung",
-    type: "Contract",
+    period: "2025",
+    location: "Depok",
+    type: "Internship",
     description:
       "Mengembangkan dashboard analitik dan landing page interaktif dengan fitur Dark/Light mode, SEO-friendly SSR, serta dynamic animations.",
     achievements: [
@@ -138,8 +138,8 @@ export const EXPERIENCES: ExperienceItem[] = [
   {
     id: "exp-3",
     role: "UI Poster & Frontend Apprentice",
-    company: "Innovation Bootcamp",
-    period: "2022 - 2023",
+    company: "Dicoding Bootcamp",
+    period: "2025 - 2026",
     location: "Indonesia",
     type: "Freelance",
     description:

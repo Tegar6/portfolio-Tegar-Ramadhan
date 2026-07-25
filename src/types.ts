@@ -12,7 +12,7 @@ export interface ExperienceItem {
   company: string;
   period: string;
   location: string;
-  type: 'Full-time' | 'Contract' | 'Freelance';
+  type: 'Full-time' | 'Internship' | 'Freelance';
   description: string;
   achievements: string[];
   techStack: string[];
