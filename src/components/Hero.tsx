@@ -30,9 +30,19 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
     return () => ctx.revert();
   }, []);
 
-  const handleDownloadCV = () => {
-    logEvent('download_cv', 'engagement', { fileName: 'Dev_Frontend_Resume.pdf' });
-    alert('Mengunduh Resume / CV Dev Frontend Developer...');
+ const handleDownloadCV = () => {
+    logEvent('download_cv', 'engagement', { fileName: 'CV_Muhammad_Tegar_Ramadhan.pdf' });
+    
+    // Path file di folder public
+    const cvUrl = '/CV_Muhammad_Tegar_Ramadhan.pdf';
+    
+    // Buat elemen <a> sementara untuk men-trigger download
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'CV_Muhammad_Tegar_Ramadhan.pdf'; // Nama file saat berhasil diunduh
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

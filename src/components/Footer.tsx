@@ -29,12 +29,6 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           </span>
         </div>
 
-        {/* Center: Tech Stack Info */}
-        <div className="flex items-center space-x-2 text-xs">
-          {/* <Sparkles className="w-4 h-4 text-[#00E5FF]" /> */}
-          <span>Next.js Architecture & Tailwind CSS • Framer Motion & GSAP</span>
-        </div>
-
         {/* Right Scroll to Top Button */}
         <button
           onClick={scrollToTop}

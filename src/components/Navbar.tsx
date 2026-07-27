@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, BarChart2, Menu, X, ArrowUpRight, CheckCircle } from 'lucide-react';
+import { Sun, Moon, BarChart2, Menu, X, ArrowUpRight } from 'lucide-react';
 import { ThemeMode } from '../types';
 import { logEvent } from '../utils/analytics';
+import { StaggeredMenu } from './StaggeredMenu';
 
 interface NavbarProps {
   theme: ThemeMode;
@@ -104,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Actions: Dark/Light Mode, Analytics Badge, CTA */}
+        {/* Actions: Dark/Light Mode, Analytics Badge, CTA (SAMA / TIDAK DIUBAH) */}
         <div className="hidden md:flex items-center space-x-4">
           {/* GA4 Button */}
           <button
@@ -178,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 rounded-lg border ${
+            className={`p-2 rounded-lg border transition-transform active:scale-95 ${
               theme === 'dark'
                 ? 'bg-slate-800 text-white border-slate-700'
                 : 'bg-slate-100 text-slate-900 border-slate-200'
@@ -190,66 +191,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div
-          className={`md:hidden px-6 py-6 border-b transition-all ${
-            theme === 'dark'
-              ? 'bg-[#0B1017] border-slate-800 text-white'
-              : 'bg-white border-slate-200 text-slate-900'
-          }`}
-        >
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.name, link.href);
-                }}
-                className={`text-lg font-medium py-1 transition-colors ${
-                  activeSection === link.name.toLowerCase()
-                    ? 'text-[#00E5FF] font-bold'
-                    : theme === 'dark'
-                    ? 'text-slate-300'
-                    : 'text-slate-700'
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-            <div className="pt-4 border-t border-slate-800 flex flex-col space-y-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenAnalytics();
-                }}
-                className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-cyan-950/40 text-cyan-300 border border-cyan-800/50 text-sm font-medium"
-              >
-                <div className="flex items-center space-x-2">
-                  <BarChart2 className="w-4 h-4 text-[#00E5FF]" />
-                  <span>Google Analytics Manager</span>
-                </div>
-                <span className="text-xs bg-[#00E5FF] text-black font-bold px-2 py-0.5 rounded-full">
-                  GA4
-                </span>
-              </button>
-
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('Contact', '#contact');
-                }}
-                className="w-full text-center py-3 bg-[#00E5FF] text-slate-950 font-bold rounded-lg text-sm"
-              >
-                Hubungi Saya
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Disisipkan Komponen StaggeredMenu dari React Bits Khusus Mobile */}
+      <StaggeredMenu
+        isOpen={mobileMenuOpen}
+        navLinks={navLinks}
+        onNavClick={handleNavClick}
+        theme={theme}
+        onOpenAnalytics={() => {
+          setMobileMenuOpen(false);
+          onOpenAnalytics();
+        }}
+      />
     </header>
   );
 };
