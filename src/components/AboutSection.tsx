@@ -126,7 +126,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                 className={`text-base leading-relaxed ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
               >
                 Saya adalah seorang Mahasiswa S1 Sistem Informasi semester 5 di
-                Universitas Gunadarma yang bersemangat untuk belajar dan
+                Universitas Gunadarma yang memiliki semangat tinggi untuk belajar dan
                 berkontribusi dalam dunia teknologi. Meskipun masih dalam proses
                 pembelajaran, Saya memiliki ketertarikan yang sangat kuat
                 terhadap bidang frontend dan desain grafis. Saya berpengalaman

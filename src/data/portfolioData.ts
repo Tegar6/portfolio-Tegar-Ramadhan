@@ -41,7 +41,12 @@ export const TECH_STACK: TechItem[] = [
     level: 92,
     color: "#F7DF1E",
   },
-  { name: "Git", category: "tools", icon: "git", level: 85, color: "#F05032" },
+  { name: "Git", 
+    category: "tools", 
+    icon: "git", 
+    level: 85, 
+    color: "#F05032",
+  },
   {
     name: "React.js",
     category: "frontend",
@@ -77,23 +82,6 @@ export const TECH_STACK: TechItem[] = [
     level: 82,
     color: "#88CE02",
   },
-];
-
-export const MARQUEE_ITEMS = [
-  "WEB",
-  "PROGRAMMING",
-  "DEVELOPMENT",
-  "JAVASCRIPT",
-  "Golang",
-  "FIGMA",
-  "GIT",
-  "PYTHON",
-  "REACT.JS",
-  "NEXT.JS",
-  "TYPESCRIPT",
-  "TAILWIND CSS",
-  "GSAP",
-  "FRAMER MOTION",
 ];
 
 export const EXPERIENCES: ExperienceItem[] = [
