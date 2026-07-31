@@ -85,29 +85,29 @@ export const TECH_STACK: TechItem[] = [
 ];
 
 export const EXPERIENCES: ExperienceItem[] = [
-  {
-    id: "exp-1",
-    role: "Frontend Developer & UI Poster",
-    company: "Tech Studio Labs",
-    period: "2024 - Present",
-    location: "Jakarta",
-    type: "Full-time",
-    description:
-      "Memimpin pengembangan antarmuka web modern dengan arsitektur scalable, optimasi animasi GSAP/Framer Motion, serta pengujian responsif lintas perangkat.",
-    achievements: [
-      "Meningkatkan performa Core Web Vitals hingga 98/100 pada Lighthouse.",
-      "Mengimplementasikan sistem desain modular berbasis Tailwind CSS dan Storybook.",
-      "Mengintegrasikan Google Analytics 4 event tracking untuk 12+ produk digital.",
-    ],
-    techStack: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "GSAP",
-      "Figma",
-    ],
-  },
+{
+  id: "exp-1",
+  role: "Frontend Developer & UI Poster",
+  company: "Tech Studio Labs",
+  period: "2024 - Present",
+  location: "Jakarta",
+  type: "Full-time",
+  description:
+    "Memimpin pengembangan antarmuka web modern dengan arsitektur scalable, optimasi animasi interaktif, serta merancang aset visual dan poster promosi digital.",
+  achievements: [
+    "Mengembangkan antarmuka web responsif dan interaktif dengan optimasi Core Web Vitals.",
+    "Merancang sistem desain modular di Figma serta poster promosi digital yang konsisten secara visual.",
+    "Mengintegrasikan pelacakan event Google Analytics 4 untuk analisis perilaku pengguna.",
+  ],
+  techStack: [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "GSAP",
+    "Framer Motion",
+    "Figma",
+  ],
+},
   {
     id: "exp-2",
     role: "Junior Web Developer",

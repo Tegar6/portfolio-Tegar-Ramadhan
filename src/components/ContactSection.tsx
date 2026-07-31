@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HERO_DATA } from '../data/portfolioData';
 import { ThemeMode } from '../types';
-import { CheckCircle, Mail, MapPin, MessageSquare, Send, Github, Linkedin, Twitter, Sparkles } from 'lucide-react';
+import { CheckCircle, Mail, MapPin, Send, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { logEvent } from '../utils/analytics';
 
 interface ContactSectionProps {
@@ -9,36 +9,55 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ theme }) => {
+  // STATE HARUS BERADA DI SINI (Di dalam komponen)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
+    honeypot: '', // Field honeypot untuk mencegah spam
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      logEvent('submit_contact_form', 'lead_generation', {
-        sender: formData.name,
-        subject: formData.subject,
+
+    try {
+      const response = await fetch("https://formspree.io/f/xaqrzpwn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 6000);
-    }, 1000);
+
+      if (response.ok) {
+        setSubmitted(true);
+        logEvent('submit_contact_form', 'lead_generation', {
+          sender: formData.name,
+          subject: formData.subject,
+        });
+        setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        alert("Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      console.error("Gagal mengirim pesan:", error);
+      alert("Terjadi kesalahan jaringan.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Heading matching style: Contact. */}
         <div className="text-center mb-16">
           <h2
             className={`font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight ${
@@ -99,7 +118,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ theme }) => {
                   {[
                     { icon: Github, label: 'GitHub', href: 'https://github.com/Tegar6' },
                     { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/muhammad-tegar-ramadhan-185461364/' },
-                    { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
+                    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/tegar.ramadhan/' },
                   ].map((soc, idx) => {
                     const Icon = soc.icon;
                     return (
@@ -137,7 +156,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ theme }) => {
                   </div>
                   <h4 className="text-2xl font-bold font-heading">Pesan Terkirim!</h4>
                   <p className="text-sm text-slate-400 max-w-sm mx-auto">
-                    Terima kasih telah menghubungi Dev. Pesan Anda telah terekam dan akan dibalas secepatnya.
+                    Terima kasih telah menghubungi Saya. Pesan Anda telah terekam dan akan dibalas secepatnya.
                   </p>
                 </div>
               ) : (
@@ -152,7 +171,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ theme }) => {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="John Doe"
+                        placeholder="nama lengkap Anda"
                         className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors ${
                           theme === 'dark'
                             ? 'bg-slate-950 border-slate-800 focus:border-[#00E5FF] text-white'
@@ -170,7 +189,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ theme }) => {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="john@example.com"
+                        placeholder="tegar@example.com"
                         className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors ${
                           theme === 'dark'
                             ? 'bg-slate-950 border-slate-800 focus:border-[#00E5FF] text-white'

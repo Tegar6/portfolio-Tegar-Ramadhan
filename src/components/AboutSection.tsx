@@ -58,7 +58,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
 
   const stats = [
     { label: "Tahun Pengalaman", value: "2+", icon: Terminal },
-    { label: "Proyek Selesai", value: "18+", icon: Code2 },
+    { label: "Proyek Selesai", value: "3+", icon: Code2 },
     { label: "Tingkat Kepuasan", value: "100%", icon: Users },
     { label: "Core Web Vitals", value: "98/100", icon: Sparkles },
   ];
@@ -150,32 +150,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                 siap untuk berkontribusi, baik dalam perencanaan sistematis
                 maupun kebutuhan presentasi visual.
               </p>
-            </div>
-
-            {/* Key Strengths Checklist */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {[
-                "Pixel-Perfect Design Implementation",
-                "Fully Responsive for Mobile & Desktop",
-                "GSAP & Framer Motion Scroll Animations",
-                "Clean Code & SEO Optimization",
-                "Google Analytics 4 Event Tracking",
-                "Dark / Light Mode Theme System",
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center space-x-2 text-sm font-medium"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-[#00E5FF] shrink-0" />
-                  <span
-                    className={
-                      theme === "dark" ? "text-slate-200" : "text-slate-800"
-                    }
-                  >
-                    {item}
-                  </span>
-                </div>
-              ))}
             </div>
 
             {/* Stats Grid */}
