@@ -1,45 +1,24 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import gsap from 'gsap';
-import { HERO_DATA } from '../data/portfolioData';
-import { ThemeMode } from '../types';
-import { ArrowRight, Code2, Download, Sparkles, Terminal } from 'lucide-react';
-import { logEvent } from '../utils/analytics';
+import React from "react";
+import { HERO_DATA } from "../data/portfolioData";
+import { ThemeMode } from "../types";
+import { ArrowRight, Download } from "lucide-react";
+import { logEvent } from "../utils/analytics";
+import { DiaTextReveal } from "./dia-text-reveal.tsx"; // Sesuaikan path komponen kamu
 
 interface HeroProps {
   theme: ThemeMode;
 }
 
 export const Hero: React.FC<HeroProps> = ({ theme }) => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const handleDownloadCV = () => {
+    logEvent("download_cv", "engagement", {
+      fileName: "CV_Muhammad_Tegar_Ramadhan.pdf",
+    });
 
-  useEffect(() => {
-    // GSAP Animation for hero elements on mount
-    const ctx = gsap.context(() => {
-      gsap.from(textRef.current?.children ? Array.from(textRef.current.children) : [], {
-        opacity: 0,
-        y: 30,
-        stagger: 0.15,
-        duration: 1,
-        ease: 'power3.out',
-        delay: 0.2,
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
- const handleDownloadCV = () => {
-    logEvent('download_cv', 'engagement', { fileName: 'CV_Muhammad_Tegar_Ramadhan.pdf' });
-    
-    // Path file di folder public
-    const cvUrl = '/CV_Muhammad_Tegar_Ramadhan.pdf';
-    
-    // Buat elemen <a> sementara untuk men-trigger download
-    const link = document.createElement('a');
+    const cvUrl = "/CV_Muhammad_Tegar_Ramadhan.pdf";
+    const link = document.createElement("a");
     link.href = cvUrl;
-    link.download = 'CV_Muhammad_Tegar_Ramadhan.pdf'; // Nama file saat berhasil diunduh
+    link.download = "CV_Muhammad_Tegar_Ramadhan.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -47,7 +26,6 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
 
   return (
     <section
-      ref={heroRef}
       id="about-hero"
       className="relative min-h-[85vh] pt-32 pb-20 flex items-center justify-center overflow-hidden"
     >
@@ -56,25 +34,31 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        {/* Right Side: Typography matching reference image */}
-        <div ref={textRef} className="lg:col-span-12 flex flex-col justify-center space-y-6">
-          {/* Main Title: Hi, I'm Tegar. */}
-          <div className="space-y-2">
+        <div className="lg:col-span-12 flex flex-col justify-center space-y-6">
+          
+          {/* Main Title */}
+          <div className="space-y-3">
+            {/* Baris 1: Hi, Muhammad Tegar Ramadhan. (Titik langsung dimasukkan ke dalam prop text) */}
             <h1
-              className={`font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight ${
-                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              className={`font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight flex flex-wrap items-center gap-x-3 ${
+                theme === "dark" ? "text-white" : "text-slate-900"
               }`}
             >
-              Hi, {HERO_DATA.name} 
-              <span className="text-[#00E5FF] inline-block ml-1 font-black">.</span>
+              <DiaTextReveal
+                text={`Hi, ${HERO_DATA.name}.`}
+                colors={["#00E5FF", "#3B82F6", "#00E5FF"]}
+                delay={0} // Berjalan bersamaan di delay 0
+              />
             </h1>
 
-            <div className="w-full lg:w-1/2 flex justify-center items-center">
-</div>
-
-            {/* Subtitle: Frontend Developer & UI/UX Enthusiast */}
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-400/90 tracking-tight">
-              Frontend Developer
+            {/* Baris 2: Frontend Developer */}
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <DiaTextReveal
+                text="Frontend Developer"
+                colors={["#94A3B8", "#00E5FF", "#94A3B8"]}
+                className="text-slate-400/90"
+                delay={0} // Set ke 0 agar muncul serentak bersama baris pertama
+              />
             </h2>
           </div>
 
@@ -82,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
           <div className="pt-4 flex flex-wrap items-center gap-4">
             <a
               href="#projects"
-              onClick={() => logEvent('hero_cta_projects', 'engagement')}
+              onClick={() => logEvent("hero_cta_projects", "engagement")}
               className="px-6 py-3.5 rounded-full bg-[#00E5FF] text-slate-950 font-extrabold text-sm flex items-center space-x-2 hover:bg-[#00cbe4] transition-all transform hover:-translate-y-1 cyan-glow"
             >
               <span>Lihat Projects</span>
@@ -92,9 +76,9 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
             <button
               onClick={handleDownloadCV}
               className={`px-6 py-3.5 rounded-full border text-sm font-bold flex items-center space-x-2 transition-all hover:-translate-y-1 ${
-                theme === 'dark'
-                  ? 'bg-slate-900/80 border-slate-700 text-slate-200 hover:border-[#00E5FF] hover:text-white'
-                  : 'bg-white border-slate-300 text-slate-800 hover:border-[#00E5FF] shadow-sm'
+                theme === "dark"
+                  ? "bg-slate-900/80 border-slate-700 text-slate-200 hover:border-[#00E5FF] hover:text-white"
+                  : "bg-white border-slate-300 text-slate-800 hover:border-[#00E5FF] shadow-sm"
               }`}
             >
               <Download className="w-4 h-4 text-[#00E5FF]" />
