@@ -15,6 +15,9 @@ import {
 import { logEvent } from "../utils/analytics";
 import profileImg from "../data/assets/Fotoprofil.png";
 
+// Import TiltedCard tanpa ekstensi .tsx
+import TiltedCard from "./TiltedCard";
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface AboutSectionProps {
@@ -87,28 +90,29 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
           </p>
         </div>
 
-        {/* Content Layout matching reference image bottom preview */}
+        {/* Content Layout */}
         <div
           ref={cardRef}
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
         >
-          {/* Left Side: Cyan Gradient Visual Profile Card */}
+          {/* Left Side: TiltedCard Component */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm">
-              {/* Cyan Accent Backdrop Card */}
-              <div className="w-full aspect-3/4 rounded-2xl bg-gradient-to-br from-[#00E5FF] via-cyan-500 to-blue-600 p-[3px] shadow-2xl cyan-glow overflow-hidden">
-                <div className="w-full h-full rounded-[13px] overflow-hidden">
-                  <img
-                    src={profileImg}
-                    alt="Muhammad Tegar Ramadhan"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-              </div>
+            <div className="relative w-full max-w-sm flex justify-center">
+              <TiltedCard
+                imageSrc={profileImg}
+                altText="Muhammad Tegar Ramadhan"
+                containerHeight="400px"
+                containerWidth="100%"
+                imageHeight="400px"
+                imageWidth="100%"
+                rotateAmplitude={20}
+                scaleOnHover={1.15}
+                showTooltip={true}
+              />
             </div>
           </div>
 
-          {/* Right Side Narrative matching exact text: "Web Developer transitioning to a career in technology." */}
+          {/* Right Side Narrative */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
               <h3
@@ -123,22 +127,26 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
               </h3>
 
               <p
-                className={`text-base leading-relaxed ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+                className={`text-base leading-relaxed ${
+                  theme === "dark" ? "text-slate-300" : "text-slate-700"
+                }`}
               >
                 Saya adalah seorang Mahasiswa S1 Sistem Informasi semester 5 di
-                Universitas Gunadarma yang memiliki semangat tinggi untuk belajar dan
-                berkontribusi dalam dunia teknologi. Meskipun masih dalam proses
-                pembelajaran, Saya memiliki ketertarikan yang sangat kuat
-                terhadap bidang frontend dan desain grafis. Saya berpengalaman
-                dalam mengerjakan proyek-proyek bebas dari internet untuk
-                mengasah skill saya. Saya memiliki fondasi yang kuat di bidang
-                teknologi melalui partisipasi aktif dalam kursus pemrograman
-                berbasis web (Front-end dan Back-end Developer) di VMLepkom,
-                Universitas.
+                Universitas Gunadarma yang memiliki semangat tinggi untuk
+                belajar dan berkontribusi dalam dunia teknologi. Meskipun masih
+                dalam proses pembelajaran, Saya memiliki ketertarikan yang
+                sangat kuat terhadap bidang frontend dan desain grafis. Saya
+                berpengalaman dalam mengerjakan proyek-proyek bebas dari
+                internet untuk mengasah skill saya. Saya memiliki fondasi yang
+                kuat di bidang teknologi melalui partisipasi aktif dalam kursus
+                pemrograman berbasis web (Front-end dan Back-end Developer) di
+                VMLepkom, Universitas.
               </p>
 
               <p
-                className={`text-base leading-relaxed ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
+                className={`text-base leading-relaxed ${
+                  theme === "dark" ? "text-slate-400" : "text-slate-600"
+                }`}
               >
                 Hal ini menunjukkan komitmen saya untuk terus belajar dan
                 berkembang di lingkungan yang mendukung kreativitas dan
