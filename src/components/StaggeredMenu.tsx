@@ -60,7 +60,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className={`md:hidden fixed inset-x-0 top-[70px] z-40 px-8 py-8 flex flex-col justify-between overflow-hidden backdrop-blur-2xl border-t ${
+          className={`md:hidden fixed inset-x-0 top-[70px z-40 px-8 py-8 flex flex-col justify-between overflow-hidden backdrop-blur-2xl border-t ${
             theme === 'dark'
               ? 'bg-[#0B1017]/95 border-slate-800 text-white'
               : 'bg-white/95 border-slate-200 text-slate-900'

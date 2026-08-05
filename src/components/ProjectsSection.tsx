@@ -111,7 +111,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ theme }) => {
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1017] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-liniear-to-t from-[#0B1017] via-transparent to-transparent opacity-80" />
 
                   {/* Category Badge & Metrics */}
                   <div className="absolute top-4 left-4 flex items-center space-x-2">

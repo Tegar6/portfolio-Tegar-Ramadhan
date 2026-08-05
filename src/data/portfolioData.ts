@@ -201,7 +201,7 @@ export const PROJECTS: ProjectItem[] = [
     image: project1Img,
     techStack: ["PHP", "HTML", "Tailwind", "JAVA SCRIPT", "SQL"],
     demoUrl:
-      "https://ais-dev-xb3fnvziu5zn23a4irm4qi-699444241829.asia-east1.run.app",
+      "#",
     githubUrl: "https://github.com/Tegar6/Web-Laporan-Warga",
     featured: true,
     metrics: "Core Web Vitals 99 / 100",
@@ -230,7 +230,7 @@ export const PROJECTS: ProjectItem[] = [
       'Poster ini adalah desain promosi bergaya modern untuk menu "Spicy Original Hamburger". Visualnya berfokus pada gambar burger berlapis yang detail dan menggugah selera, didukung oleh tipografi tebal yang mencolok.',
     image: project2mg,
     techStack: ["Figma"],
-    demoUrl: project2mg, // Diisi variabel gambar poster agar saat diklik Preview langsung membuka gambarnya
+    demoUrl: project2mg, 
     featured: true,
     metrics: "40+ Components Library",
   },

@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
               onClick={() => logEvent('hero_cta_projects', 'engagement')}
               className="px-6 py-3.5 rounded-full bg-[#00E5FF] text-slate-950 font-extrabold text-sm flex items-center space-x-2 hover:bg-[#00cbe4] transition-all transform hover:-translate-y-1 cyan-glow"
             >
-              <span>Lihat Proyek</span>
+              <span>Lihat Projects</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
