@@ -60,7 +60,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className={`md:hidden fixed inset-x-0 top-[70px z-40 px-8 py-8 flex flex-col justify-between overflow-hidden backdrop-blur-2xl border-t ${
+          className={`md:hidden fixed inset-x-0 top-70px z-40 px-8 py-8 flex flex-col justify-between overflow-hidden backdrop-blur-2xl border-t ${
             theme === 'dark'
               ? 'bg-[#0B1017]/95 border-slate-800 text-white'
               : 'bg-white/95 border-slate-200 text-slate-900'
@@ -91,13 +91,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           {/* Tombol Aksi di Bagian Bawah */}
           <motion.div variants={itemVariants} className="pt-6 border-t border-slate-800/80 flex flex-col space-y-3">
-            <button
-              onClick={onOpenAnalytics}
-              className="w-full py-3 px-4 rounded-xl bg-cyan-950/40 text-cyan-300 border border-cyan-800/50 text-sm font-semibold flex justify-between items-center"
-            >
-              <span>Google Analytics Manager</span>
-              <span className="text-xs bg-[#00E5FF] text-black px-2 py-0.5 rounded-full font-bold">GA4</span>
-            </button>
+            
+            {/* FIXED: Hanya muncul di Localhost/Mode DEV. Otomatis sembunyi total di HP/Production */}
+            {import.meta.env.DEV && (
+              <button
+                onClick={onOpenAnalytics}
+                className="w-full py-3 px-4 rounded-xl bg-cyan-950/40 text-cyan-300 border border-cyan-800/50 text-sm font-semibold flex justify-between items-center"
+              >
+                <span>Google Analytics Manager</span>
+                <span className="text-xs bg-[#00E5FF] text-black px-2 py-0.5 rounded-full font-bold">GA4</span>
+              </button>
+            )}
 
             <a
               href="#contact"

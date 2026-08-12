@@ -108,8 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Actions: Dark/Light Mode, Analytics Badge, CTA (SAMA / TIDAK DIUBAH) */}
-        <div className="hidden md:flex items-center space-x-4">
-          {/* GA4 Button */}
+        <div className="flex items-center space-x-2 sm:space-x-4">
           {import.meta.env.DEV && (
             <button
               onClick={() => {
@@ -124,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <BarChart2 className="w-3.5 h-3.5 text-[#00E5FF]" />
-              <span>GA4 Active</span>
-              <span className="ml-1 px-1.5 py-0.2 text-[10px] bg-[#00E5FF] text-slate-950 font-bold rounded-full">
+              <span className="hidden sm:inline">GA4 Active</span>
+              <span className="px-1.5 py-0.2 text-[10px] bg-[#00E5FF] text-slate-950 font-bold rounded-full">
                 {analyticsCount}
               </span>
             </button>
@@ -183,15 +182,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Moon className="w-4 h-4" />
             )}
           </button>
-            ({import.meta.env.DEV && (
-          <button
-            onClick={onOpenAnalytics}
-            className="p-2 rounded-lg border bg-[#00E5FF]/10 border-[#00E5FF]/30 text-[#00E5FF]"
-          >
-            <BarChart2 className="w-4 h-4" />
-          </button>
+          
+          {import.meta.env.DEV && (
+            <button
+              onClick={onOpenAnalytics}
+              className="p-2 rounded-lg border bg-[#00E5FF]/10 border-[#00E5FF]/30 text-[#00E5FF]"
+            >
+              <BarChart2 className="w-4 h-4" />
+            </button>
           )}
-
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-2 rounded-lg border transition-transform active:scale-95 ${
