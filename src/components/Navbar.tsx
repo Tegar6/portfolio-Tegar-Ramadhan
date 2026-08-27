@@ -107,8 +107,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Actions: Dark/Light Mode, Analytics Badge, CTA */}
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Actions */}
+        <div className="flex items-center space-x-2 sm:space-x-4">
           {import.meta.env.DEV && (
             <button
               onClick={() => {
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          {/* Theme Toggle Button */}
+          {/* SATU-SATUNYA Theme Toggle Button */}
           <button
             onClick={() => {
               toggleTheme();
@@ -166,23 +166,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
         </div>
 
-        {/* Mobile controls */}
+        {/* Mobile controls - Tombol mode gelap sudah dihapus dari sini */}
         <div className="flex items-center space-x-2 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-lg border ${
-              theme === "dark"
-                ? "bg-slate-800 text-amber-400 border-slate-700"
-                : "bg-slate-100 text-slate-700 border-slate-200"
-            }`}
-          >
-            {theme === "dark" ? (
-              <Sun className="w-4 h-4" />
-            ) : (
-              <Moon className="w-4 h-4" />
-            )}
-          </button>
-          
           {import.meta.env.DEV && (
             <button
               onClick={onOpenAnalytics}
