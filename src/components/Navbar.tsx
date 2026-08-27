@@ -107,8 +107,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Actions: Dark/Light Mode, Analytics Badge, CTA (SAMA / TIDAK DIUBAH) */}
-        <div className="flex items-center space-x-2 sm:space-x-4">
+        {/* Actions: Dark/Light Mode, Analytics Badge, CTA */}
+        <div className="hidden md:flex items-center space-x-4">
           {import.meta.env.DEV && (
             <button
               onClick={() => {
