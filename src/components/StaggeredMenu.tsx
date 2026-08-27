@@ -30,7 +30,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       transition: {
         duration: 0.4,
         when: 'beforeChildren',
-        staggerChildren: 0.1, // Jeda antar item (efek Staggered)
+        staggerChildren: 0.1, 
       },
     },
     exit: {
