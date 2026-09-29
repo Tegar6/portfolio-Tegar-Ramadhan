@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { HERO_DATA } from "../data/portfolioData";
 import { ThemeMode } from "../types";
 import { ArrowRight, Download } from "lucide-react";
 import { logEvent } from "../utils/analytics";
-import { DiaTextReveal } from "./dia-text-reveal.tsx"; // Sesuaikan path komponen kamu
+import { DiaTextReveal } from "./dia-text-reveal";
 
 interface HeroProps {
   theme: ThemeMode;
 }
 
 export const Hero: React.FC<HeroProps> = ({ theme }) => {
+  const [revealKey, setRevealKey] = useState(0);
+
+  // Memicu ulang setiap kali section hero masuk viewport (saat scroll naik/turun)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealKey((prev) => prev + 1);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const target = document.getElementById("about-hero");
+    if (target) observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleDownloadCV = () => {
     logEvent("download_cv", "engagement", {
       fileName: "CV_Muhammad_Tegar_Ramadhan.pdf",
@@ -36,9 +55,8 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-12 flex flex-col justify-center space-y-6">
           
-          {/* Main Title */}
-          <div className="space-y-3">
-            {/* Baris 1: Hi, Muhammad Tegar Ramadhan. (Titik langsung dimasukkan ke dalam prop text) */}
+          {/* Main Title - Memicu ulang animasi secara otomatis saat masuk viewport */}
+          <div key={revealKey} className="space-y-3 select-none">
             <h1
               className={`font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight flex flex-wrap items-center gap-x-3 ${
                 theme === "dark" ? "text-white" : "text-slate-900"
@@ -47,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
               <DiaTextReveal
                 text={`Hi, ${HERO_DATA.name}.`}
                 colors={["#00E5FF", "#3B82F6", "#00E5FF"]}
-                delay={0} // Berjalan bersamaan di delay 0
+                delay={0} 
               />
             </h1>
 
@@ -57,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
                 text="Frontend Developer"
                 colors={["#94A3B8", "#00E5FF", "#94A3B8"]}
                 className="text-slate-400/90"
-                delay={0} // Set ke 0 agar muncul serentak bersama baris pertama
+                delay={0}
               />
             </h2>
           </div>

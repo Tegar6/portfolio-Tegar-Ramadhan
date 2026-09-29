@@ -13,8 +13,8 @@ import { ThemeMode } from '../types';
 
 interface MarqueeTickerProps {
   theme: ThemeMode;
-  speed?: number;       // default 90 (kecepatan animasi dalam detik)
-  logoHeight?: number;  // default 60 (tinggi/ukuran logo dalam pixel)
+  speed?: number;       
+  logoHeight?: number;  
 }
 
 // Data Logo
@@ -49,13 +49,13 @@ export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({
     >
       <div 
         className="animate-marquee flex items-center whitespace-nowrap gap-12"
-        style={{ animationDuration: `${speed}s` }} // Mengatur speed=90
+        style={{ animationDuration: `${speed}s` }} 
       >
         {duplicatedLogos.map((logo, idx) => (
           <div 
             key={idx} 
             className="flex items-center justify-center transition-transform hover:scale-110"
-            style={{ height: `${logoHeight}px` }} // Mengatur logoHeight=60
+            style={{ height: `${logoHeight}px` }} 
           >
             {logo.node(logoHeight)}
           </div>
