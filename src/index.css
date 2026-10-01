@@ -60,3 +60,23 @@
   text-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
 }
 
+/* Matikan animasi default & mix-blend-mode bawaan browser */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+/* 
+  KUNCI UTAMA: 
+  Pastikan layer 'new' selalu berada di ATAS layer 'old'.
+  Kita akan menganimasikan layer 'new' untuk mekar di kedua arah.
+*/
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}

@@ -3,6 +3,7 @@ import { Sun, Moon, BarChart2, Menu, X, ArrowUpRight } from "lucide-react";
 import { ThemeMode } from "../types";
 import { logEvent } from "../utils/analytics";
 import { StaggeredMenu } from "./StaggeredMenu";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 interface NavbarProps {
   theme: ThemeMode;
@@ -131,27 +132,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          {/* SATU-SATUNYA Tombol Mode Gelap/Terang */}
-          <button
-            onClick={() => {
+          {/* Tombol Theme Toggler dari Magic UI */}
+          <AnimatedThemeToggler
+            variant="star"
+            isDark={theme === "dark"}
+            onToggle={() => {
               toggleTheme();
               logEvent("theme_toggle", "user_preference", {
                 newTheme: theme === "dark" ? "light" : "dark",
               });
             }}
-            className={`p-2 rounded-xl transition-all border ${
-              theme === "dark"
-                ? "bg-slate-800/80 text-amber-400 border-slate-700 hover:bg-slate-700"
-                : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
-            }`}
-            aria-label="Toggle dark/light mode"
-          >
-            {theme === "dark" ? (
-              <Sun className="w-4 h-4" />
-            ) : (
-              <Moon className="w-4 h-4" />
-            )}
-          </button>
+          />
 
           {/* Let's Talk CTA - Hanya Muncul di Desktop */}
           <a
